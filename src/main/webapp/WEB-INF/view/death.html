@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>Styled Table</title>
+    <style>
+        body {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <table class="table table-bordered" style="table-layout: fixed;">
+        <colgroup>
+            <col style="width: 82px">
+            <col style="width: 48px">
+            <col style="width: 49px">
+            <col style="width: 119px">
+            <col style="width: 112px">
+            <col style="width: 129px">
+            <col style="width: 115px">
+        </colgroup>
+        <thead>
+        <tr>
+            <th class="bg-secondary text-center" colspan="7">사망신고서<br>(신고일 : 2020년05월02일)</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td class="bg-light text-center" rowspan="4">사<br>망<br>자</td>
+            <td class="bg-light text-center" colspan="2">성명</td>
+            <td class="text-left" colspan="2"></td>
+            <td class="bg-light text-center">주민등록번호</td>
+            <td class="text-left"></td>
+        </tr>
+        <tr>
+            <td class="bg-light text-center" colspan="2">사망일시</td>
+            <td class="text-left" colspan="4">2021년03월15일14시59분</td>
+        </tr>
+        <tr>
+            <td class="bg-light text-center" rowspan="2">사망<br>장소</td>
+            <td class="bg-light text-center">구분</td>
+            <td class="text-left" colspan="4">
+                <!--                <span th:text="${}"></span>-->
+            </td>
+        </tr>
+        <tr>
+            <td class="bg-light text-center">주소</td>
+            <td class="text-left" colspan="4"></td>
+        </tr>
+        <tr>
+            <td class="bg-light text-center" rowspan="3">신<br>고<br>인</td>
+            <td class="bg-light text-center" colspan="2">성명</td>
+            <td class="text-left" colspan="2"></td>
+            <td class="bg-light text-center">주민등록번호</td>
+            <td class="text-left"></td>
+        </tr>
+        <tr>
+            <td class="bg-light text-center" colspan="2">자격</td>
+            <td class="text-left" colspan="4">동거친족/비동거친족/동거자/기타</td>
+        </tr>
+        <tr>
+            <td class="bg-light text-center" colspan="2">이메일</td>
+            <td class="text-left" colspan="2"></td>
+            <td class="bg-light text-center">전화번호</td>
+            <td class="text-left"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Bootstrap JS and Popper.js -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+</body>
+</html>

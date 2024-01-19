@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <title>Styled Table</title>
+  <style>
+    body {
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <table class="table table-bordered">
+    <thead class="thead-light">
+    <tr>
+      <th scope="col">이름</th>
+      <th scope="col">주민등록등본</th>
+      <th scope="col">가족관계증명서</th>
+      <th scope="col">출생신고서</th>
+      <th scope="col">사망신고서</th>
+      <th scope="col">발급목록</th>
+      <th scope="col">삭제</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="r : ${list.content}">
+      <td th:text="${r.name}"></td>
+      <td>
+        <a th:if="${r.householdSerialNumber != null}" th:href="@{'/idcard/view/'+${r.householdSerialNumber}}">주민등록등본</a>
+      </td>
+      <td><a th:href="@{'/family/view/'+${r.residentSerialNumber}}">가족관계증명서</a></td>
+      <td ><a th:each="bd : ${r.birthDeathDto}" th:if="${bd.birthDeathTypeCode eq '출생'}" th:href="@{'/birth/view/'+${r.residentSerialNumber}}">출생신고서</a></td>
+      <td ><a th:each="bd : ${r.birthDeathDto}" th:if="${bd.birthDeathTypeCode eq '사망'}" th:href="@{'/death/view/'+${r.residentSerialNumber}}">사망신고서</a></td>
+      <td><a th:if="${r.certificateConfirmationNumber != null}" th:href="@{'/certificate/view/'+${r.residentSerialNumber}}">발급목록</a></td>
+      <td>
+        <button type="button" class="btn btn-danger">삭제</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<!-- 페이징 처리 -->
+<div class="d-flex justify-content-center">
+  <nav aria-label="Page navigation example">
+    <th:block th:if="${list.totalPages == null or list.totalPages == 0}">
+      <div> 목록이 없습니다.</div>
+    </th:block>
+    <th:block th:if="${list.totalPages != null and list.totalPages != 0}">
+      <ul class="pagination">
+        <th:block th:if="${list.first}">
+        </th:block>
+        <th:block th:unless="${list.first}">
+          <li class="page-item">
+            <a class="page-link" th:href="@{'/?page='+${list.number - 1}}" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+        </th:block>
+
+        <th:block th:each="i : ${#numbers.sequence(startBlockPage, endBlockPage)}">
+          <th:block th:if="${i eq list.pageable.pageNumber+1}">
+            <li class="page-item"><a class="page-link"><b th:text="${i}"></b></a></li>
+          </th:block>
+          <th:block th:unless="${i eq list.pageable.pageNumber+1}">
+            <li class="page-item"><a class="page-link" th:href="@{'/?page='+${i - 1}}" th:text="${i}"></a></li>
+          </th:block>
+        </th:block>
+
+        <th:block th:if="${list.last}">
+        </th:block>
+        <th:block th:unless="${list.last}">
+          <li class="page-item">
+            <a class="page-link" th:href="@{'/?page='+${list.number + 1}}" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+        </th:block>
+      </ul>
+    </th:block>
+  </nav>
+</div>
+
+<!-- Bootstrap JS and Popper.js -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+</body>
+</html>
