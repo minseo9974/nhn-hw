@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>Styled Table</title>
+    <style>
+        body {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <table class="table table-bordered">
+        <thead class="thead-dark">
+        <tr>
+            <th class="text-center" colspan="6">
+                주민등록등본<br>
+                <span th:text="'(발급일 : '+ ${localDate} +', 증명서확인번호 : '+ ${confirmNumber}+')'"></span>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td class="text-center" colspan="2">세대주 성명</td>
+            <td class="text-center" th:text="${household.name}"></td>
+            <td class="text-center" colspan="2">세대구성<br>사유및 일자</td>
+            <td class="text-center" colspan="1"
+                th:utext="${household.householdCompositionReasonCode}+'<br>' + ${household.householdCompositionDate.toString()}"></td>
+        </tr>
+        <tr>
+            <td class="text-center" colspan="4">주소</td>
+            <td class="text-center" colspan="2">신고일</td>
+        </tr>
+        <tr class="text-center" th:each="a : ${address}">
+            <td class="text-center" th:text="${a.lastAddressYN eq 'N' ? '예전 주소' : '현주소'}"></td>
+            <td class="text-center" colspan="3" th:text="${a.houseMovementAddress}"></td>
+            <td class="text-center" colspan="2" th:text="${a.houseMovementReportDate.toString()}"></td>
+        </tr>
+        <tr>
+            <td class="text-center">세대주<br>관계</td>
+            <td class="text-center">성명</td>
+            <td class="text-center" colspan="2">주민등록번호</td>
+            <td class="text-center">신고일</td>
+            <td class="text-center">변동사유</td>
+        </tr>
+        <tr class="text-center" th:each="r : ${residents}">
+            <td class="text-center" th:text="${r.householdRelationshipCode}"></td>
+            <td class="text-center" th:text="${r.name}"></td>
+            <td class="text-center" colspan="2"
+                th:text="${r.residentRegistrationNumber}"></td>
+            <td class="text-center" th:text="${r.reportDate.toString()}"></td>
+            <td class="text-center" th:text="${r.householdCompositionChangeReasonCode}"></td>
+        </tr>
+
+        </tbody>
+    </table>
+</div>
+
+<!-- Bootstrap JS and Popper.js -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+</body>
+</html>

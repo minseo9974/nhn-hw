@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>Styled Table</title>
+    <style>
+        body {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <table class="table table-bordered" style="table-layout: fixed;">
+        <colgroup>
+            <col style="width: 82px">
+            <col style="width: 48px">
+            <col style="width: 49px">
+            <col style="width: 119px">
+            <col style="width: 112px">
+            <col style="width: 129px">
+            <col style="width: 115px">
+        </colgroup>
+        <thead>
+        <tr>
+            <th class="bg-secondary text-center" colspan="7">출생신고서<br>
+                <span th:text="'(신고일 : '+${report.birthDeathReportDate}+')'"></span>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td class="bg-light text-center" rowspan="4">출<br>생<br>자</td>
+            <td class="bg-light text-center" colspan="2">성명</td>
+            <td class="text-center" colspan="2" th:text="${birth.name}"></td>
+            <td class="bg-light text-center">성별</td>
+            <td class="text-center" th:text="${birth.genderCode}"></td>
+        </tr>
+        <tr>
+            <td class="bg-light text-center" colspan="2">출생일시</td>
+            <td class="text-center" colspan="4" th:text="${birth.birthDate+'(한국시각:24시각제로기재)'}"></td>
+        </tr>
+        <tr>
+            <td class="bg-light text-center" colspan="2">출생장소</td>
+            <td class="text-center" colspan="4" th:text="${birth.birthPlaceCode}">
+            </td>
+        </tr>
+        <tr>
+            <td class="bg-light text-center" colspan="2">등록기준지<br>(본적)</td>
+            <td class="text-center" colspan="4" th:text="${birth.registrationBaseAddress}"></td>
+        </tr>
+        <tr>
+            <td class="bg-light text-center" rowspan="2">부<br>모</td>
+            <td class="bg-light text-center">부</td>
+            <td class="text-center">성명</td>
+            <td class="text-center" colspan="2" th:text="${father != null ? father.name : ''}"></td>
+            <td class="bg-light text-center">주민등록번호</td>
+            <td class="text-center" th:text="${father != null ? father.residentRegistrationNumber : ''}"></td>
+        </tr>
+        <tr>
+            <td class="bg-light text-center">모</td>
+            <td class="text-center">성명</td>
+            <td class="text-center" colspan="2" th:text="${mother != null ? mother.name : ''}"></td>
+            <td class="bg-light text-center">주민등록번호</td>
+            <td class="text-center" th:text="${mother != null ? mother.residentRegistrationNumber : ''}"></td>
+        </tr>
+        <tr>
+            <td class="bg-light text-center" rowspan="3">신<br>고<br>인</td>
+            <td class="bg-light text-center" colspan="2">성명</td>
+            <td class="text-center" colspan="2" th:text="${report.name}"></td>
+            <td class="bg-light text-center">주민등록번호</td>
+            <td class="text-center" th:text="${report.residentRegistrationNumber}"></td>
+        </tr>
+        <tr>
+            <td class="bg-light text-center" colspan="2">자격</td>
+            <td class="text-center" colspan="4" th:text="${report.birthReportQualificationsCode}">
+            </td>
+        </tr>
+        <tr>
+            <td class="bg-light text-center" colspan="2">이메일</td>
+            <td class="text-center" colspan="2" th:text="${report.emailAddress}"></td>
+            <td class="bg-light text-center">전화번호</td>
+            <td class="text-center" th:text="${report.phoneNumber}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Bootstrap JS and Popper.js -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+</body>
+</html>

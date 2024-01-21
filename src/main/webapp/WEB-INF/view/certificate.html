@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>Styled Table</title>
+    <style>
+        body {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <a href="/" class="btn btn-primary">메인 페이지</a>
+</div>
+<div class="container">
+    <table class="table table-bordered">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col">발급 번호</th>
+            <th scope="col">증명서</th>
+            <th scope="col">발급일</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="r : ${list.content}">
+            <td th:text="${r.certificateConfirmationNumber}"></td>
+            <td>
+                <a th:text="${r.certificateTypeCode}"></a>
+            </td>
+            <td><a th:text="${r.certificateIssueDate}"></a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<!-- 페이징 처리 -->
+<div class="d-flex justify-content-center">
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <th:block th:if="${list.first}">
+            </th:block>
+            <th:block th:unless="${list.first}">
+                <li class="page-item">
+                    <a class="page-link" th:href="@{'/certificate/view/'+${serialCode}+'/?page='+${list.number - 1}}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+            </th:block>
+
+            <th:block th:each="i : ${#numbers.sequence(startBlockPage, endBlockPage)}">
+                <th:block th:if="${i eq list.pageable.pageNumber+1}">
+                    <li class="page-item"><a class="page-link"><b th:text="${i}"></b></a></li>
+                </th:block>
+                <th:block th:unless="${i eq list.pageable.pageNumber+1}">
+                    <li class="page-item"><a class="page-link" th:href="@{'/certificate/view/'+${serialCode}+'/?page='+${i - 1}}" th:text="${i}"></a></li>
+                </th:block>
+            </th:block>
+
+            <th:block th:if="${list.last}">
+            </th:block>
+            <th:block th:unless="${list.last}">
+                <li class="page-item">
+                    <a class="page-link" th:href="@{'/certificate/view/'+${serialCode}+'/?page='+${list.number + 1}}" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </th:block>
+        </ul>
+    </nav>
+</div>
+
+<!-- Bootstrap JS and Popper.js -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+
+</body>
+</html>

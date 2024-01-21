@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>Styled Table</title>
+    <style>
+        body {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <table class="table table-bordered" style="table-layout: fixed;">
+        <colgroup>
+            <col style="width: 82px">
+            <col style="width: 48px">
+            <col style="width: 49px">
+            <col style="width: 119px">
+            <col style="width: 112px">
+            <col style="width: 129px">
+            <col style="width: 115px">
+        </colgroup>
+        <thead>
+        <tr>
+            <th class="bg-secondary text-center" colspan="7">
+                사망신고서<br>
+                <span th:text="${'(신고일 : '+ report.birthDeathReportDate +')'}"></span>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td class="bg-light text-center" rowspan="4">사<br>망<br>자</td>
+            <td class="bg-light text-center" colspan="2">성명</td>
+            <td class="text-center" colspan="2" th:text="${death.name}"></td>
+            <td class="bg-light text-center">주민등록번호</td>
+            <td class="text-center" th:text="${death.residentRegistrationNumber}" ></td>
+        </tr>
+        <tr>
+            <td class="bg-light text-center" colspan="2">사망일시</td>
+            <td class="text-center" colspan="4" th:text="${death.deathDate +'(사망지 시각:24시각제로 기재)'}"></td>
+        </tr>
+        <tr>
+            <td class="bg-light text-center" rowspan="2">사망<br>장소</td>
+            <td class="bg-light text-center">구분</td>
+            <td class="text-center" colspan="4" th:text="${death.deathPlaceCode}"></td>
+        </tr>
+        <tr>
+            <td class="bg-light text-center">주소</td>
+            <td class="text-center" colspan="4" th:text="${death.deathPlaceAddress}"></td>
+        </tr>
+        <tr>
+            <td class="bg-light text-center" rowspan="3">신<br>고<br>인</td>
+            <td class="bg-light text-center" colspan="2">성명</td>
+            <td class="text-center" colspan="2" th:text="${report.name}"></td>
+            <td class="bg-light text-center">주민등록번호</td>
+            <td class="text-center" th:text="${report.residentRegistrationNumber}"></td>
+        </tr>
+        <tr>
+            <td class="bg-light text-center" colspan="2">자격</td>
+            <td class="text-center" colspan="4" th:text="${report.deathReportQualificationsCode}"></td>
+        </tr>
+        <tr>
+            <td class="bg-light text-center" colspan="2">이메일</td>
+            <td class="text-center" colspan="2" th:text="${report.emailAddress}"></td>
+            <td class="bg-light text-center">전화번호</td>
+            <td class="text-center" th:text="${report.phoneNumber}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Bootstrap JS and Popper.js -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+</body>
+</html>
