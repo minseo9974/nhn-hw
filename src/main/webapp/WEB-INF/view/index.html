@@ -34,10 +34,16 @@
                    th:href="@{'/idCard/view/'+${r.householdSerialNumber}+'/'+${r.residentSerialNumber}}">주민등록등본</a>
             </td>
             <td><a th:href="@{'/family/view/'+${r.residentSerialNumber}}">가족관계증명서</a></td>
-            <td><a th:each="bd, i : ${r.birthDeathDto}" th:if="${i.index} &lt; 2 and ${bd.birthDeathTypeCode eq '출생'}"
-                   th:href="@{'/birth/view/'+${r.residentSerialNumber}}">출생신고서</a></td>
-            <td><a th:each="bd, i : ${r.birthDeathDto}" th:if="${i.index} &lt; 1 and ${bd.birthDeathTypeCode eq '사망'}"
-                   th:href="@{'/death/view/'+${r.residentSerialNumber}}">사망신고서</a></td>
+
+            <td th:each="bd,i : ${r.birthDeathDto}" th:if="${i.index} &lt; 2">
+                <a th:if="${i.index == 0 and bd.birthDeathTypeCode eq '출생'}"
+                   th:href="@{'/birth/view/'+${r.residentSerialNumber}}">출생신고서</a>
+                <a th:if="${i.index == 1 and bd.birthDeathTypeCode eq '사망'}"
+                   th:href="@{'/death/view/'+${r.residentSerialNumber}}">사망신고서</a>
+            </td>
+
+            <td th:if="${r.birthDeathDto.size == 1}"></td>
+
             <td><a th:if="${r.certificateConfirmationNumber != null}"
                    th:href="@{'/certificate/view/'+${r.residentSerialNumber}}">발급목록</a></td>
             <td>

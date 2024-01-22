@@ -1,0 +1,21 @@
+### 등록
+POST http://localhost:8080/household/2/movement
+Content-Type: application/json
+
+{
+  "reportDate" : 20240122,
+  "movementAdd" : "광주광역시 서구 서구청",
+  "lastAddress" : "Y"
+}
+
+### 수정
+PUT http://localhost:8080/household/2/movement/20240122
+Content-Type: application/json
+
+{
+  "lastAddress" : "N"
+}
+
+### 삭제
+DELETE http://localhost:8080/household/2/movement/20240122
+Content-Type: application/json

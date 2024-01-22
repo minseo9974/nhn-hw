@@ -1,9 +1,12 @@
 package com.nhnacademy.certificate.controller;
 
+import com.nhnacademy.certificate.domain.BirthDeathDto;
 import com.nhnacademy.certificate.domain.IndexResidentDto;
 import com.nhnacademy.certificate.domain.ResidentDto;
 import com.nhnacademy.certificate.service.ResidentService;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -41,8 +44,6 @@ public class HomeController {
         int startBlockPage = ((pageNumber) / pageBlock) * pageBlock + 1;
         int endBlockPage = startBlockPage + pageBlock - 1;
         endBlockPage = totalPages < endBlockPage ? totalPages : endBlockPage;
-
-
 
         model.addAttribute("startBlockPage", startBlockPage);
         model.addAttribute("endBlockPage", endBlockPage);

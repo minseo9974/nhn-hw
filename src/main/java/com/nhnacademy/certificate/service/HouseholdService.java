@@ -10,4 +10,13 @@ public interface HouseholdService {
     void deleteHouseholdAndSoOn(Integer householdSerialNumber);
 
     Household getHouseholdByResidentSerialNumber(Integer residentSerialNumber);
+
+    void saveHousehold(Household household);
+
+    void deleteHousehold(Integer householdSerialNumber);
+
+    boolean exists(Integer householdSerialNumber);
+
+    Household getHouseholdWithEntity(Integer householdSerialNumber);
+
 }

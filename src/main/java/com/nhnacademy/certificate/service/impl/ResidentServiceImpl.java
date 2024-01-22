@@ -10,6 +10,7 @@ import com.nhnacademy.certificate.domain.IndexResidentDto;
 import com.nhnacademy.certificate.domain.ResidentDto;
 import com.nhnacademy.certificate.domain.ResidentOwnerDto;
 import com.nhnacademy.certificate.entity.Resident;
+import com.nhnacademy.certificate.exception.ResidentAllreadyExistsException;
 import com.nhnacademy.certificate.repository.ResidentRepository;
 import com.nhnacademy.certificate.service.ResidentService;
 import java.util.List;
@@ -84,6 +85,24 @@ public class ResidentServiceImpl implements ResidentService {
         residentRepository.deleteHouseholdCompositionByResidentSerialNumber(residentSerialNumber);
         residentRepository.deleteCertificateIssueByResidentSerialNumber(residentSerialNumber);
         residentRepository.deleteFamilyRelationshipsByResidentSerialNumber(residentSerialNumber);
+    }
+
+    @Override
+    public void createResident(Resident resident) {
+        if (residentRepository.existsById(resident.getResidentSerialNumber())) {
+            throw new ResidentAllreadyExistsException();
+        }
+        residentRepository.save(resident);
+    }
+
+    @Override
+    public boolean checkResident(Integer residentSerialNumber) {
+        return residentRepository.existsById(residentSerialNumber);
+    }
+
+    @Override
+    public void modifyResident(Resident resident) {
+        residentRepository.save(resident);
     }
 
 

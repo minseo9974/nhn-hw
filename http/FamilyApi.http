@@ -1,0 +1,21 @@
+### 등록
+POST http://localhost:8080/residents/8/relationship
+Content-Type: application/json
+
+{
+  "familySerialNumber" : 6,
+  "relationShip" : "모"
+}
+
+### 수정
+PUT http://localhost:8080/residents/8/relationship/6
+Content-Type: application/json
+
+{
+  "relationShip" : "부"
+
+}
+
+### 삭제
+DELETE http://localhost:8080/residents/8/relationship/6
+Content-Type: application/json

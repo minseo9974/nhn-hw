@@ -2,6 +2,7 @@ package com.nhnacademy.certificate.domain;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Objects;
 
 public class DeathDto {
     private String name;
@@ -11,12 +12,18 @@ public class DeathDto {
     private String deathPlaceAddress;
 
     public DeathDto(String name, String residentRegistrationNumber, LocalDateTime deathDate, String deathPlaceCode,
-                          String deathPlaceAddress) {
+                    String deathPlaceAddress) {
         this.name = name;
         this.residentRegistrationNumber = residentRegistrationNumber;
-        this.deathDate = deathDate;
-        this.deathPlaceCode = deathPlaceCode;
-        this.deathPlaceAddress = deathPlaceAddress;
+        if (Objects.isNull(deathDate) || Objects.isNull(deathPlaceCode) || Objects.isNull(deathPlaceAddress)) {
+            this.deathDate = LocalDateTime.now();
+            this.deathPlaceCode = "";
+            this.deathPlaceAddress = "";
+        } else {
+            this.deathDate = deathDate;
+            this.deathPlaceCode = deathPlaceCode;
+            this.deathPlaceAddress = deathPlaceAddress;
+        }
     }
 
     public String getName() {

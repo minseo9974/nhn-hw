@@ -11,14 +11,14 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import lombok.Data;
 import lombok.Getter;
 
 @Entity
 @Table(name = "household")
-@Getter
+@Data
 public class Household {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "household_serial_number", nullable = false)
     private Integer householdSerialNumber;
 

@@ -1,24 +1,21 @@
 package com.nhnacademy.certificate.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import lombok.Getter;
+import lombok.Data;
 
 @Entity
-@Getter
+@Data
 @Table(name = "resident")
 public class Resident {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "resident_serial_number", nullable = false)
     private Integer residentSerialNumber;
 
@@ -32,6 +29,7 @@ public class Resident {
     private String genderCode;
 
     @Column(name = "birth_date")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
     private LocalDateTime birthDate;
 
     @Column(name = "birth_place_code", length = 20, nullable = false)
@@ -41,6 +39,7 @@ public class Resident {
     private String registrationBaseAddress;
 
     @Column(name = "death_date")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
     private LocalDateTime deathDate;
 
     @Column(name = "death_place_code", length = 20)

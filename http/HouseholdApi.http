@@ -1,0 +1,15 @@
+### 등록
+POST http://localhost:8080/household/
+Content-Type: application/json
+
+{
+  "householdSerialNumber" : "2",
+  "householdResidentSerialNumber" : "8",
+  "householdCompositionDate" : "2024-01-22",
+  "householdCompositionReasonCode" : "세대분리",
+  "currentHouseMovementAddress" : "광주광역시 동구 조선대학교"
+}
+
+### 삭제
+DELETE http://localhost:8080/household/2
+Content-Type: application/json

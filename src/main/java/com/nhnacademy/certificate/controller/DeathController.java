@@ -51,9 +51,9 @@ public class DeathController {
 
         DeathDto deathDto = residentService.getDeathDto(residentSerialNumber);
         DeathReportDto deathReportDto = birthDeathReportResidentService.getDeathReportDto(residentSerialNumber);
-        if (Objects.isNull(deathDto.getDeathDate())) {
-            throw new RuntimeException("사망자의 사망 관련 정보가 없습니다.");
-        }
+//        if (Objects.isNull(deathDto.getDeathDate())) {
+//            throw new RuntimeException("사망자의 사망 관련 정보가 없습니다.");
+//        }
 
         log.info("{}",deathDto.getName());
         log.info("{}",deathDto.getResidentRegistrationNumber());

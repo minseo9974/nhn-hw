@@ -37,4 +37,11 @@ public interface ResidentService {
 
     void deleteResidentAndSoOn(Integer residentSerialNumber);
 
+    void createResident(Resident resident);
+
+    boolean checkResident(Integer residentSerialNumber);
+
+    void modifyResident(Resident resident);
+
+
 }
